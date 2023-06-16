@@ -16,7 +16,7 @@ public class Program
     public static void Main(string[] args)
     {
 
-        string lines = "ABCDIFGH";
+        string lines = "ABCDIFGHI";
 
          
         if(lines.Length%2 == 0)
