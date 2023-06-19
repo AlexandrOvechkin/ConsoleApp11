@@ -15,8 +15,8 @@ public class Program
 {
     public static void Main(string[] args)
     {
-
-        string lines = "ABCDIFGH";
+        Console.WriteLine("input:");
+        string lines = Console.ReadLine();
 
          
         if(lines.Length%2 == 0)
@@ -34,7 +34,7 @@ public class Program
         else
         {
             string reverse = lines.Reverse();
-            Console.WriteLine(reverse+lines);
+            Console.WriteLine($"output" + reverse+lines);
         }
         
     }   
