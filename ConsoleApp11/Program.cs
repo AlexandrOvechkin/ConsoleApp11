@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
+using System.ComponentModel;
 using System.Runtime.ExceptionServices;
 using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
 
 public static class Extensions
 {
@@ -17,30 +20,35 @@ public class Program
     {
         Console.WriteLine("input:");
         string lines = Console.ReadLine();
-
-
-        if (lines.Length % 2 == 0)
+        Regex newReg = new Regex(@"[^a-z]", RegexOptions.None);
+        MatchCollection matches = newReg.Matches(lines);
+        if (matches.Count > 0)
         {
-            int i = lines.Length / 2;
-            string first = lines[..i];
-            string second = lines[i..];
-
-            string reverseFirst = first.Reverse();
-            string reversSecond = second.Reverse();
-            string FullName = reverseFirst + reversSecond;
-            Console.WriteLine(FullName);
+            foreach (Match mat in matches)
+            {
+                Console.WriteLine(@"Ошибка,недопустимый символ:" + mat.Value);
+            }
 
         }
         else
         {
-            string reverse = lines.Reverse();
-            Console.WriteLine($"output" + reverse + lines);
+            if (lines.Length % 2 == 0)
+            {
+                int m = lines.Length / 2;
+                string first = lines[..m];
+                string second = lines[m..];
+                string reverseFirst = first.Reverse();
+                string reversSecond = second.Reverse();
+                string FullName = reverseFirst + reversSecond;
+                Console.WriteLine($"output:" + FullName);
+            }
+            else
+            {
+                string reverse = lines.Reverse();
+                Console.WriteLine($"output:" + reverse + lines);
+            }
         }
-
     }
 }
-
-
-
 
 
