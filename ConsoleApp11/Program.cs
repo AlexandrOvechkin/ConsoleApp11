@@ -15,29 +15,32 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        Console.WriteLine("input:");
+        string lines = Console.ReadLine();
 
-        string lines = "ABCDIFGHI";
 
-         
-        if(lines.Length%2 == 0)
+        if (lines.Length % 2 == 0)
         {
-            int i = lines.Length/2;
+            int i = lines.Length / 2;
             string first = lines[..i];
             string second = lines[i..];
 
-             string reverseFirst = first.Reverse();
-             string reversSecond = second.Reverse();           
-             string FullName = reverseFirst + reversSecond;
-             Console.WriteLine(FullName);   
+            string reverseFirst = first.Reverse();
+            string reversSecond = second.Reverse();
+            string FullName = reverseFirst + reversSecond;
+            Console.WriteLine(FullName);
 
         }
         else
         {
             string reverse = lines.Reverse();
-            Console.WriteLine(reverse+lines);
+            Console.WriteLine($"output" + reverse + lines);
         }
-        
-    }   
+
+    }
 }
+
+
+
 
 
