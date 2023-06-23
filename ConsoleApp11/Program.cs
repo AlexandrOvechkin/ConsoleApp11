@@ -16,6 +16,7 @@ public static class Extensions
 }
 public class Program
 {
+
     public static void Main(string[] args)
     {
         Console.WriteLine("input:");
@@ -28,43 +29,59 @@ public class Program
             {
                 Console.WriteLine(@"Ошибка,недопустимый символ:" + mat.Value);
             }
-
         }
         else
         {
+            int m = lines.Length / 2;
+            string first = lines[..m];
+            string second = lines[m..];
+            string reverseFirst = first.Reverse();
+            string reversSecond = second.Reverse();
+            string FullName = reverseFirst + reversSecond;
+            var arr = FullName.ToCharArray();
+            var qu = arr.Distinct();
+            string reverse = lines.Reverse() + lines;
+            Console.WriteLine("===================================================================");
             if (lines.Length % 2 == 0)
             {
-                int m = lines.Length / 2;
-                string first = lines[..m];
-                string second = lines[m..];
-                string reverseFirst = first.Reverse();
-                string reversSecond = second.Reverse();
-                string FullName = reverseFirst + reversSecond;
                 Console.WriteLine($"output:" + FullName);
-                var arr = FullName.ToCharArray();
-
-                var qu = arr.Distinct();
-
+                Console.WriteLine("===================================================================");
                 foreach (var z in qu)
                 {
                     Console.WriteLine("{0} повторяется {1} раз(а)", z, FullName.Count(c => c == z));
                 }
+                Console.WriteLine("===================================================================");
+                var result1 = Regex.Matches(FullName, @"[aeiouy]+\w*[aeiouy]", RegexOptions.IgnoreCase);
+                foreach (var item in result1)
+                {
+                    Console.WriteLine($"substring:" + item);
+
+
+                }
             }
             else
             {
-                string reverse = lines.Reverse() + lines;
+
                 Console.WriteLine($"output:" + reverse);
-                var arr = reverse.ToCharArray();
-
-                var qu = arr.Distinct();
-
                 foreach (var z in qu)
                 {
                     Console.WriteLine("{0} повторяется {1} раз(а)", z, reverse.Count(c => c == z));
+                }
+
+                Console.WriteLine("===================================================================");
+                var result = Regex.Matches(reverse, @"[aeiouy]+\w*[aeiouy]", RegexOptions.IgnoreCase);
+                foreach (var item in result)
+                {
+                    Console.WriteLine($"substring:" + item);
                 }
             }
         }
     }
 }
+
+
+
+
+
 
 
